@@ -4,6 +4,13 @@ from mcp import StdioServerParameters
 
 
 server_list = {
+	"g-maps": StdioServerParameters(
+		command="/usr/bin/npx",
+		args=["-y", "@modelcontextprotocol/server-google-maps"],
+		env={
+			"GOOGLE_MAPS_API_KEY": os.getenv("GMAP_API_KEY")
+		}
+	),
     "weather": StdioServerParameters(
         command="python",
         args=["app/servers/weather_server.py"],
@@ -15,7 +22,7 @@ server_list = {
             "-y",
             "kubernetes-mcp-server@latest",
             "--kubeconfig",
-            "/home/ted/.kube/config",
+            "/home/tbrunell/.kube/config",
         ]
     ),
     "github": StdioServerParameters(
